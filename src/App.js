@@ -4,7 +4,8 @@ import { useState } from 'react';
 function App() {
 
   const [background, setBackground] = useState(false);
-  const [name, setName] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   function handleMouseOver () {
@@ -15,8 +16,12 @@ function App() {
     setBackground(false);
   }
 
-  function handleChange (e) {
-    setName(e.target.value);
+  function handleChangeFname (e) {
+    setFname(e.target.value);
+  }
+
+  function handleChangeLname (e) {
+    setLname(e.target.value);
   }
 
   function handleClick (e) {
@@ -26,14 +31,21 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Hello {isSubmitted && name + ", your form is submitted"}</h1>
+      <h1>Hello {isSubmitted && fname + " " + lname + ", your form is submitted"}</h1>
 
       <form onSubmit={handleClick}>
         <input 
-          onChange={handleChange}
+          onChange={handleChangeFname}
           type="text" 
-          placeholder="What's your name?"
-          value={name}
+          placeholder="First Name"
+          value={fname}
+        />
+
+        <input 
+          onChange={handleChangeLname}
+          type="text" 
+          placeholder="Last Name"
+          value={lname}
         />
 
         <button
