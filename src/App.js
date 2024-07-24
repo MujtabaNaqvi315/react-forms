@@ -19,28 +19,31 @@ function App() {
     setName(e.target.value);
   }
 
-  function handleClick () {
+  function handleClick (e) {
     setIsSubmitted(true);
+    e.preventDefault();
   }
 
   return (
     <div className="container">
-      <h1>Hello {name} {isSubmitted && "your form is submitted"}</h1>
+      <h1>Hello {isSubmitted && name + ", your form is submitted"}</h1>
 
-      <input 
-        onChange={handleChange}
-        type="text" 
-        placeholder="What's your name?"
-        value={name}
-      />
+      <form onSubmit={handleClick}>
+        <input 
+          onChange={handleChange}
+          type="text" 
+          placeholder="What's your name?"
+          value={name}
+        />
 
-      <button 
-        style={{backgroundColor: background ? "black" : "white"}} 
-        onMouseOver={handleMouseOver} 
-        onMouseOut={handleMouseOut}
-        onClick={handleClick}> 
-          Submit 
-      </button>
+        <button
+          type="submit" 
+          style={{backgroundColor: background ? "black" : "white"}} 
+          onMouseOver={handleMouseOver} 
+          onMouseOut={handleMouseOut}> 
+            Submit 
+        </button>
+      </form>
 
     </div>
   );
