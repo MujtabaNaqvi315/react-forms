@@ -4,9 +4,11 @@ import { useState } from 'react';
 function App() {
 
   const [background, setBackground] = useState(false);
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [fullName, setFullName] = useState ({
+    fName: "",
+    lName: ""
+  });
 
   function handleMouseOver () {
     setBackground(true);
@@ -16,12 +18,23 @@ function App() {
     setBackground(false);
   }
 
-  function handleChangeFname (e) {
-    setFname(e.target.value);
-  }
+  function handleChange (e) {
+    const inputName = e.target.name;
+    const newValue = e.target.value;
 
-  function handleChangeLname (e) {
-    setLname(e.target.value);
+    setFullName((prevValue) => {
+      if (inputName === "fName" ) {
+        return {
+          fName: newValue,
+          lName: prevValue.lName
+        };
+      } else if (inputName === "lName") {
+        return {
+          fName: prevValue.fName,
+          lName: newValue
+        };
+      }
+    });
   }
 
   function handleClick (e) {
@@ -31,21 +44,23 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Hello {isSubmitted && fname + " " + lname + ", your form is submitted"}</h1>
+      <h1>Hello {isSubmitted && fullName.fName + " " + fullName.lName + ", your form is submitted"}</h1>
 
       <form onSubmit={handleClick}>
         <input 
-          onChange={handleChangeFname}
+          name="fName"
+          onChange={handleChange}
           type="text" 
           placeholder="First Name"
-          value={fname}
+          value={fullName.fName}
         />
 
         <input 
-          onChange={handleChangeLname}
+          name="lName"
+          onChange={handleChange}
           type="text" 
           placeholder="Last Name"
-          value={lname}
+          value={fullName.lName}
         />
 
         <button
