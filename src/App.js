@@ -19,19 +19,18 @@ function App() {
   }
 
   function handleChange (e) {
-    const inputName = e.target.name;
-    const newValue = e.target.value;
+    const {name, value} = e.target;
 
     setFullName((prevValue) => {
-      if (inputName === "fName" ) {
+      if (name === "fName" ) {
         return {
-          fName: newValue,
+          fName: value,
           lName: prevValue.lName
         };
-      } else if (inputName === "lName") {
+      } else if (name === "lName") {
         return {
           fName: prevValue.fName,
-          lName: newValue
+          lName: value
         };
       }
     });
