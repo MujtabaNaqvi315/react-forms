@@ -7,7 +7,8 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [fullName, setFullName] = useState ({
     fName: "",
-    lName: ""
+    lName: "",
+    email: ""
   });
 
   function handleMouseOver () {
@@ -32,6 +33,12 @@ function App() {
           fName: prevValue.fName,
           lName: value
         };
+      } else if (name === "email") {
+        return {
+          fName: prevValue.fName,
+          lName: prevValue.lName,
+          email: value
+        }
       }
     });
   }
@@ -44,6 +51,7 @@ function App() {
   return (
     <div className="container">
       <h1>Hello {isSubmitted && fullName.fName + " " + fullName.lName + ", your form is submitted"}</h1>
+      <p>{fullName.email}</p>
 
       <form onSubmit={handleClick}>
         <input 
@@ -60,6 +68,14 @@ function App() {
           type="text" 
           placeholder="Last Name"
           value={fullName.lName}
+        />
+
+        <input 
+          name="email"
+          onChange={handleChange}
+          type="text" 
+          placeholder="Email"
+          value={fullName.email}
         />
 
         <button
