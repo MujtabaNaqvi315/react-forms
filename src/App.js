@@ -51,7 +51,7 @@ function App() {
   return (
     <div className="container">
       <h1>Hello {isSubmitted && fullName.fName + " " + fullName.lName + ", your form is submitted"}</h1>
-      <p>{fullName.email}</p>
+      <p>{isSubmitted && fullName.email}</p>
 
       <form onSubmit={handleClick}>
         <input 
