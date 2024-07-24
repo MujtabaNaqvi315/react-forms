@@ -26,12 +26,14 @@ function App() {
       if (name === "fName" ) {
         return {
           fName: value,
-          lName: prevValue.lName
+          lName: prevValue.lName,
+          email: prevValue.email
         };
       } else if (name === "lName") {
         return {
           fName: prevValue.fName,
-          lName: value
+          lName: value,
+          email: prevValue.email
         };
       } else if (name === "email") {
         return {
